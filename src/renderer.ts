@@ -28,4 +28,31 @@
 
 import './index.css';
 
-console.log('👋 This message is being logged by "renderer.ts", included via Vite');
+console.log(
+  '👋 This message is being logged by "renderer.ts", included via Vite'
+);
+// Array to store the numbers
+const numbers: number[] | undefined = [];
+
+// Function to add a number to the array
+function addNumber() {
+  const numberInput = document.getElementById('numberInput');
+  //@ts-expect-error todo
+  const number = parseInt(numberInput.value);
+
+  // Add the number to the array
+  if (!isNaN(number)) {
+    numbers.push(number * 2);
+  }
+
+  //@ts-expect-error todo
+  numberInput.value = '';
+
+  // Log the updated array
+  console.log(numbers);
+  console.log('ZZZZZZ');
+}
+
+// Event listener for the button click
+const addButton = document.getElementById('addButton');
+addButton.addEventListener('click', addNumber);
